@@ -1,0 +1,338 @@
+
+## Basic Arithmetic Operations
+
+
+# Addition
+3 + 5
+
+# Subtraction
+10 - 4
+
+# Multiplication
+2 * 6
+
+# Division
+8 / 2
+
+```
+## Variables
+In R, you can store values in variables. Here's how you create and use variables:
+
+# Assign a value to a variable
+x <- 10
+
+# Print the value of the variable
+print(x)
+
+# Perform operations with variables
+y <- x * 2
+print(y)
+
+```
+
+## Vectors
+Vectors are one-dimensional arrays in R that can hold multiple values of the same data type.
+
+
+# Create a numeric vector
+numbers <- c(1, 2, 3, 4, 5)
+
+# Create a character vector
+fruits <- c("apple", "banana", "cherry")
+
+# Access elements in a vector
+print(numbers[3])  # Access the third element
+print(fruits[2])   # Access the second element
+
+
+# Add two vectors element-wise
+vec1 <- c(1, 2, 3)
+vec2 <- c(4, 5, 6)
+result <- vec1 + vec2
+print(result)
+
+
+# Create two numeric vectors
+vec1 <- c(1, 2, 3, 4, 5)
+vec2 <- c(6, 7, 8, 9, 10)
+
+# Calculate the mean of each vector
+mean_vec1 <- mean(vec1)
+mean_vec2 <- mean(vec2)
+print(mean_vec1)
+print(mean_vec2)
+
+# Calculate the dot product of the two vectors
+dot_product <- sum(vec1 * vec2)
+print(dot_product)
+
+# Create a logical vector based on a condition
+logical_vector <- vec1 > 3
+print(logical_vector)
+
+
+```
+
+## Dataframes
+Dataframes are two-dimensional data structures in R, similar to tables in a database or Excel spreadsheet.
+
+
+# Create a dataframe
+df <- data.frame(
+  Name = c("Alice", "Bob", "Charlie"),
+  Age = c(25, 30, 22),
+  City = c("New York", "Los Angeles", "Chicago")
+)
+
+# Access dataframe columns
+print(df$Name)
+print(df$Age)
+
+# Add a new column
+df$Salary <- c(50000, 60000, 45000)
+
+# Filter rows based on a condition
+young_people <- df[df$Age < 30, ]
+print(young_people)
+
+# Summary statistics
+summary(df)
+
+
+# Create a dataframe
+students <- data.frame(
+  Name = c("Alice", "Bob", "Charlie", "David"),
+  Age = c(25, 30, 22, 28),
+  Grade = c("A", "B", "C", "A")
+)
+
+# Add a new row to the dataframe
+new_student <- data.frame(Name = "Eva", Age = 24, Grade = "B")
+students <- rbind(students, new_student)
+
+# Filter rows based on a condition
+young_students <- students[students$Age < 25, ]
+print(young_students)
+
+# Sort the dataframe by age in descending order
+sorted_students <- students[order(-students$Age), ]
+print(sorted_students)
+
+
+```
+
+# Loops
+Loops allow you to perform repetitive tasks in R.
+
+### For Loop
+
+
+# Print numbers from 1 to 5 using a for loop
+for (i in 1:5) {
+  print(i)
+}
+
+
+# Print the squares of numbers from 1 to 5 using a for loop
+for (i in 1:5) {
+  square <- i^2
+  print(paste(i, "squared is", square))
+}
+
+```
+
+### While Loop
+
+
+
+# Print numbers from 1 to 5 using a while loop
+i <- 1
+while (i <= 5) {
+  print(i)
+  i <- i + 1
+}
+
+
+# Calculate the factorial of a number using a while loop
+n <- 5
+factorial <- 1
+i <- 1
+
+while (i <= n) {
+  factorial <- factorial * i
+  i <- i + 1
+}
+
+print(paste("Factorial of", n, "is", factorial))
+
+```
+# Bar Graph:
+
+A bar graph is suitable for showing comparisons between different categories.
+
+### Step 1: Load the necessary library (ggplot2 for this example).
+
+
+
+library(ggplot2)
+```
+
+### Step 2: Create a data frame with your data.
+
+
+data <- data.frame(
+  category = c("A", "B", "C", "D"),
+  value = c(30, 20, 25, 15)
+)
+```
+
+### Step 3: Create the bar graph.
+
+ggplot(data, aes(x = category, y = value)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(title = "Bar Graph Example", x = "Categories", y = "Values")
+```
+### Explanation:
+
+_ggplot()_ initializes the plot.
+_aes()_ specifies the aesthetics. x = category determines the x-axis categories, and y = value sets the y-axis values.
+_geom_bar()_ creates the bar chart.
+_labs()_ sets the title and axis labels.
+
+
+# Pie Chart:
+
+A pie chart is useful for displaying the distribution of categorical data as slices of a circle.
+
+### Step 1: Load the necessary library (ggplot2 for this example).
+
+library(ggplot2)
+```
+
+### Step 2: Create a data frame with your data.
+
+
+data <- data.frame(
+  category = c("A", "B", "C", "D"),
+  value = c(30, 20, 25, 15)
+)
+```
+### Step 3: Create the pie chart.
+
+
+ggplot(data, aes(x = "", y = value, fill = category)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  theme_void() +
+  labs(title = "Pie Chart Example")
+```
+### Explanation:
+
+_ggplot()_ initializes the plot.
+_aes()_ specifies the aesthetics. x = "" creates a single pie chart, y = value determines the slice size, and fill = category assigns colors to categories.
+_geom_bar()_ creates the bar chart.
+_coord_polar()_ converts the bar chart into a pie chart.
+_theme_void()_ removes unnecessary elements.
+_labs()_ sets the title.
+
+# Histogram:
+
+A histogram is used to visualize the distribution of a single variable.
+
+### Step 1: Load the necessary library (ggplot2 for this example).
+
+
+library(ggplot2)
+```
+### Step 2: Create a data frame with your data. You can also load your data from a file using 'read' function.
+
+data <- data.frame(
+  value = rnorm(100)
+)
+```
+### Step 3: Create the histogram.
+
+
+ggplot(data, aes(x = value)) +
+  geom_histogram(binwidth = 0.5, fill = "lightgreen") +
+  labs(title = "Histogram Example", x = "Values", y = "Frequency")
+```
+### Explanation:
+
+_ggplot()_ initializes the plot.
+_aes()_ specifies the aesthetics. x = value sets the variable for the x-axis.
+_geom_histogram()_ creates the histogram. binwidth determines the width of each bin.
+_labs()_ sets the title and axis labels.
+
+
+# Scatter Plot:
+
+A scatter plot is used to show the relationship between two numerical variables.
+
+### Step 1: Load the necessary library (ggplot2 for this example).
+
+
+data <- data.frame(
+  x = rnorm(100),
+  y = rnorm(100)
+)
+```
+### Step 2: Create a data frame with your data, or load your data.
+
+
+data <- data.frame(
+  x = rnorm(100),
+  y = rnorm(100)
+)
+```
+### Step 3: Create the scatter plot.
+
+
+ggplot(data, aes(x = x, y = y)) +
+  geom_point(color = "red") +
+  labs(title = "Scatter Plot Example", x = "X-axis", y = "Y-axis")
+
+```
+### Explanation:
+
+_ggplot()_ initializes the plot.
+_aes()_ specifies the aesthetics. x = x and y = y set the variables for the x and y axes.
+_geom_point()_ creates the scatter plot.
+_labs()_ sets the title and axis labels.
+
+
+## Calculate the Correlation
+
+
+
+
+# Calculate the correlation coefficient
+correlation_coefficient <- cor(data$x, data$y)
+
+# Print the correlation coefficient
+cat("Correlation Coefficient:", correlation_coefficient, "\n")
+
+```
+
+
+# Create a Gaussian Distribution (Normal Distribution)
+
+# Load the necessary library
+library(ggplot2)
+
+# Create a data frame with a normal distribution
+data <- data.frame(
+  values = rnorm(1000, mean = 0, sd = 1)
+)
+
+# Create the normal distribution plot
+ggplot(data, aes(x = values)) +
+  geom_histogram(binwidth = 0.1, fill = "lightblue", color = "black") +
+  labs(
+    title = "Normal Distribution",
+    x = "Values",
+    y = "Frequency",
+    caption = "Mean = 0, Standard Deviation = 1"
+  )
+
+```
