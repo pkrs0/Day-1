@@ -1,0 +1,44 @@
+Step 1: Load Required Libraries and the Dataset
+# Load required libraries
+library(ggplot2)  # For data visualization
+library(dplyr)    # For data manipulation
+library(tidyr)    # For data tidying
+ 
+# Load the Titanic dataset (assuming it's in your working directory)
+titanic <- read.csv("path…..titanic.csv")
+If there are any issues in this we can discuss them, as we are using read csv for the first time.
+Step 2: Explore the Dataset
+Let's start by getting a sense of what the dataset looks like:
+# Display the first few rows of the dataset
+head(titanic)
+# Get an overview of the dataset
+summary(titanic)
+# Check the structure of the dataset (data types)
+str(titanic)
+# Check for missing values
+sapply(titanic, function(x) sum(is.na(x)))
+ 
+Step 3: Visualize Data
+EDA often involves creating visualizations to better understand the data. Here are some common visualizations:
+# Histogram of passenger ages
+ggplot(titanic, aes(x = Age)) +
+  geom_histogram(binwidth = 5, fill = "skyblue", color = "black") +
+  labs(title = "Distribution of Passenger Ages", x = "Age")
+ 
+# Bar chart of passenger classes
+ggplot(titanic, aes(x = factor(Pclass))) +
+  geom_bar(fill = "steelblue") +
+  labs(title = "Passenger Class Distribution", x = "Class")
+ 
+# Survival rate by gender
+ggplot(titanic, aes(x = Sex, fill = factor(Survived))) +
+  geom_bar(position = "fill") +
+  labs(title = "Survival Rate by Gender", x = "Gender", y = "Proportion") +
+  scale_fill_manual(values = c("red", "green"))
+ 
+ 
+# Scatterplot of age vs. fare
+ggplot(titanic, aes(x = Age, y = Fare, color = factor(Survived))) +
+  geom_point() +
+  labs(title = "Age vs. Fare by Survival", x = "Age", y = "Fare") +
+  scale_color_manual(values = c("red", "green"))
